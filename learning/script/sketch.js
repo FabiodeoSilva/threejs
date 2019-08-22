@@ -1,7 +1,7 @@
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
-let scene, camera, renderer;
+let scene, camera, renderer, controls;
 
 const init = () => {
   //scene
@@ -17,11 +17,16 @@ const init = () => {
   renderer.setClearColor("#000000");
   renderer.setSize(WIDTH, HEIGHT);
 
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  camera.position.set(0, 20, 100);
+  controls.update();
+
   document.body.appendChild(renderer.domElement);
 };
 
 const animate = () => {
   requestAnimationFrame(animate);
+  controls.update();
   renderer.render(scene, camera);
 };
 
