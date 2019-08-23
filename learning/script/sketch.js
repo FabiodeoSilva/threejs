@@ -9,6 +9,8 @@ const init = () => {
 
   //camera
   camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 1000);
+  camera.aspect = WIDTH / HEIGHT;
+  camera.updateProjectionMatrix();
   camera.position.z = 4;
 
   //renderer
@@ -24,7 +26,7 @@ const init = () => {
   document.body.appendChild(renderer.domElement);
 };
 
-const animate = () => {
+let animate = () => {
   requestAnimationFrame(animate);
   controls.update();
   renderer.render(scene, camera);
